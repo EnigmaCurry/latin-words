@@ -6,6 +6,8 @@ This is an Emacs package that includes a Latin-English dictionary.
 <img src="https://raw.githubusercontent.com/EnigmaCurry/latin-words/refs/heads/master/latin-words.webp" alt="latin-words screenshot in Emacs"/>
 #+END_HTML
 
+(Screenshot of the Latin word of the day on the Emacs dashboard)
+
 [[https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0059]["A Latin Dictionary"]] by Charlton T. Lewis and Charles Short is
 provided by the Perseus Digital Library at Tufts University with
 funding from the National Endowment for the Humanities and it is
