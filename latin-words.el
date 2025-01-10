@@ -29,9 +29,16 @@
 
 ;; See LICENSE.txt
 
-(defvar latin-words-directory
+(defgroup latin-words nil
+  "Settings for the latin-words package."
+  :prefix "latin-words-"
+  :group 'libraries)
+
+(defcustom latin-words-directory
   (expand-file-name "data" (file-name-directory (or load-file-name buffer-file-name)))
-  "Directory containing the Latin dictionary files.")
+  "Directory containing the Latin dictionary files."
+  :type 'directory
+  :group 'latin-words)
 
 (defun latin-word-of-the-day ()
   (latin-word-get-by-seed (string-to-number (substring (secure-hash 'sha256 (format-time-string "%Y%m%d")) 0 16) 16)))
