@@ -14,6 +14,9 @@ available for viewing and download at http://www.perseus.tufts.edu/
 
 This package is only availble on github for now.
 
+There is one external program dependency (to be refactoired out in a
+future release): [[https://jqlang.github.io/jq/download/][jq]]
+
 Here is how I install it with [[https://github.com/radian-software/straight.el][straight.el]] and [[https://github.com/jwiegley/use-package][use-package]]:
 
 #+begin_src elisp
@@ -38,6 +41,8 @@ the =data= directory beneath that (e.g.,
 ** Usage
 
 #+begin_src elisp
+  (require 'latin-words)
+  
   ;; Get full description string for Latin word "adbibo":
   (latin-word-get-description "adbibo")
 
@@ -51,7 +56,45 @@ the =data= directory beneath that (e.g.,
   (latin-word-get-description (latin-word-of-the-day))
 #+end_src
 
+** Dashboard integration and Word of the Day
 
+Put the Latin word of the day on your [[https://github.com/emacs-dashboard/emacs-dashboard][Emacs dashboard]]:
+
+#+begin_src elisp
+(use-package
+ dashboard
+ :ensure t
+ :general ("C-c C-d" 'dashboard-open)
+ :init
+ (defun my-dashboard-insert-vocabulary (list-size)
+   (dashboard-insert-heading
+    "Word of the day:" nil
+    (all-the-icons-faicon
+     "newspaper-o"
+     :height 1.2
+     :v-adjust 0.0
+     :face 'dashboard-heading))
+   (insert "\n")
+   (let* ((char-limit 100000)
+          (word (latin-word-of-the-day))
+          (description (latin-word-get-description word)))
+     (insert
+      (substring description
+                 0
+                 (min char-limit (length description))))))
+ (dashboard-setup-startup-hook)
+ :custom
+ (dashboard-center-content t)
+ (dashboard-set-heading-icons nil)
+ (dashboard-set-file-icons nil)
+ (dashboard-icon-type nil)
+ (dashboard-footer-messages (list "    "))
+ (dashboard-items '((recents . 5) (bookmarks . 5) (vocabulary)))
+ (dashboard-item-generators
+  '((vocabulary . my-dashboard-insert-vocabulary)
+    (recents . dashboard-insert-recents)
+    (bookmarks . dashboard-insert-bookmarks))))
+#+end_src
 
 
 ** License
