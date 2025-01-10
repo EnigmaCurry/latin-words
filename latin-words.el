@@ -1,9 +1,9 @@
 ;; latin-words.el --- A Latin-English dictionary -*- lexical-binding: t; -*-
 ;;
 ;; Author: EnigmaCurry
-;; URL: https://github.com/enigmacurry/latin-words
+;; URL: https://github.com/EnigmaCurry/latin-words
 ;; Version: 0.1
-;; Package-Requires: ((emacs "27.1"))
+;; Package-Requires: ((emacs "24.1"))
 ;; Keywords: dictionary, latin
 ;; SPDX-License-Identifier: MIT AND CC-BY-SA-3.0
 ;;
@@ -31,13 +31,17 @@
 
 (provide 'latin-words)
 
-(defvar latin-dictionary-directory
+(defvar latin-words-directory
   (expand-file-name "data" (file-name-directory (or load-file-name buffer-file-name)))
   "Directory containing the Latin dictionary files.")
 
+(defun latin-word-of-the-day ()
+    (latin-word-get-by-seed (string-to-number (substring (secure-hash 'sha256 (format-time-string "%Y%m%d")) 0 16) 16)))
+    (latin-word-of-the-day)
+
 (defun latin-word-get-by-seed (seed)
-  "Retrieve a Latin word by a given SEED from JSON files in `latin-dictionary-directory`."
-  (let* ((default-directory latin-dictionary-directory)
+  "Retrieve a Latin word by a given SEED from JSON files in `latin-words-directory`."
+  (let* ((default-directory latin-words-directory)
          (command "jq -r '.[] | .key' *.json | sort -u")
          (words
           (split-string (shell-command-to-string command) "\n" t))
@@ -50,12 +54,12 @@
       (message "No words found."))))
 
 (defun latin-word-get-definition (word)
-  "Lookup WORD in the Latin dictionary in the latin-dictionary-directory."
+  "Lookup WORD in the Latin dictionary in the latin-words-directory."
   (let*
       ((first-letter (upcase (substring word 0 1)))
        (file-name
         (concat
-         latin-dictionary-directory "/" "ls_" first-letter ".json"))
+         latin-words-directory "/" "ls_" first-letter ".json"))
        ;; Updated jq command to flatten "senses"
        (jq-command
         (format
@@ -70,13 +74,19 @@
   (let* ((entry (latin-word-get-definition word))
          (word (gethash "key" entry))
          (part-of-speech (or (gethash "part_of_speech" entry) ""))
+         (gender (or (gethash "gender" entry) ""))
          (senses (mapconcat 'identity (latin-word-flatten-vector (or (gethash "senses" entry) ())) "\n\n"))
+         (title-orthography (or (gethash "title_orthography" entry) ""))
          (main-notes (or (gethash "main_notes" entry) ""))
          (description (with-temp-buffer
                         (let* ((start (point)))
                           (insert (upcase word))
+                          (when (not (string-blank-p title-orthography))          
+                            (insert " ")
+                            (insert title-orthography)
+                            )
                           (when (not (string-blank-p part-of-speech))
-                            (insert (concat " (" part-of-speech ")")))
+                            (insert (concat " (" part-of-speech (when (not (string-blank-p gender)) (concat " " gender)) ")")))
                           (when (not (string-blank-p main-notes))          
                             (insert " ")
                             (insert main-notes)
