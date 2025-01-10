@@ -1,0 +1,51 @@
+#+title: Latin Words
+
+This is an Emacs package that includes a Latin-English dictionary.
+
+[[https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0059]["A Latin Dictionary"]] by Charlton T. Lewis and Charles Short is
+provided by the Perseus Digital Library at Tufts University with
+funding from the National Endowment for the Humanities and it is
+redistributed in this package under the [[http://creativecommons.org/licenses/by-sa/3.0/us/][Creative Commons ShareAlike
+3.0 License]]. The intermediate JSON files for this dataset came from
+[[https://github.com/IohannesArnold/lewis-short-json][IohannesArnold/lewis-short-json]] and the original XML files are
+available for viewing and download at http://www.perseus.tufts.edu/
+
+** License
+
+This software is distributed under the MIT (Expat) license and the
+accompanying data files are published under the [[http://creativecommons.org/licenses/by-sa/3.0/us/][Creative Commons
+ShareAlike 3.0 License]]
+
+#+begin_src text :tangle LICENSE.txt
+  Copyright 2025 EnigmaCurry
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy of
+  this software and associated documentation files (the "Software"), to deal in
+  the Software without restriction, including without limitation the rights to
+  use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+  the Software, and to permit persons to whom the Software is furnished to do so,
+  subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.  
+
+  Dataset Attribution
+  ===================
+
+  This work includes data files originating from other works:
+
+  - Title: "A Latin Dictionary"
+  - Creators: Charlton T. Lewis and Charles Short
+  - Publisher: Perseus Digital Library, Tufts University
+  - Funding: The National Endowment for the Humanities
+  - License: Creative Commons ShareALike 3.0 License.
+  - Source: https://www.perseus.tufts.edu/hopper/opensource/download
+  - Source: https://github.com/IohannesArnold/lewis-short-json
+#+end_src
