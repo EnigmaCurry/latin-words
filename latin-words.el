@@ -38,7 +38,7 @@
     (latin-word-of-the-day)
 
 (defun latin-word-get-by-seed (seed)
-  "Retrieve a Latin word by a given SEED from JSON files in `latin-words-directory`."
+  "Retrieve a determinstic Latin word by a given SEED."
   (let* ((default-directory latin-words-directory)
          (command "jq -r '.[] | .key' *.json | sort -u")
          (words
@@ -106,7 +106,7 @@
   (apply #'vector
          (cl-mapcan (lambda (item)
                       (if (vectorp item)
-                          (flatten-vector item)
+                          (latin-word-flatten-vector item)
                         (list item)))
                     vec)))
 
