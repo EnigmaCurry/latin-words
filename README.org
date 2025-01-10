@@ -16,18 +16,43 @@ available for viewing and download at http://www.perseus.tufts.edu/
 #+end_src
 
 
+If you use straight.el and use-package:
+
+#+begin_src elisp
+(use-package
+ latin-words
+ :ensure t
+ :straight
+ (latin-words :type git :host github :repo "enigmacurry/latin-words")
+ :custom
+ (latin-words-directory
+  (expand-file-name "~/.emacs.d/straight/repos/latin-words/data")))
+#+end_src
+
+By default, the =latin-words-directory= is set to the =data= directory
+beneath the directory containing =latin-words.el=, however straight.el
+separates the elisp code from the data files, so you must customize
+=latin-words-directory= to be the path to the place where your package
+manager clones this repository to and find the =data= directory
+beneath that (e.g., =~/.emacs.d/straight/repos/latin-words/data=).
+
 ** Usage
 
-;;; Usage:
-;;
-;; ;; Get description string for Latin word "adbibo":
-;; (latin-word-get-description "adbibo")
-;;
-;; ;; Get definition object for Latin word "adbibo":
-;; (latin-word-get-definition "adbibo")
-;;
-;; ;; Get a "random" deterministic Latin word based on numeric seed:
-;; (latin-word-get-by-seed 1234567890)
+#+begin_src elisp
+  ;; Get full description string for Latin word "adbibo":
+  (latin-word-get-description "adbibo")
+
+  ;; Get definition hashmap for Latin word "adbibo" decoded from the JSON:
+  (latin-word-get-definition "adbibo")
+
+  ;; Get a "random" deterministic Latin word (just the word) based on numeric seed:
+  (latin-word-get-by-seed 1234567890)
+
+  ;; Get the description for the word of the day:
+  (latin-word-get-description (latin-word-of-the-day))
+#+end_src
+
+
 
 
 ** License
