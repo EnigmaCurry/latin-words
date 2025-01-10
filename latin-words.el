@@ -34,8 +34,7 @@
   "Directory containing the Latin dictionary files.")
 
 (defun latin-word-of-the-day ()
-    (latin-word-get-by-seed (string-to-number (substring (secure-hash 'sha256 (format-time-string "%Y%m%d")) 0 16) 16)))
-    (latin-word-of-the-day)
+  (latin-word-get-by-seed (string-to-number (substring (secure-hash 'sha256 (format-time-string "%Y%m%d")) 0 16) 16)))
 
 (defun latin-word-get-by-seed (seed)
   "Retrieve a determinstic Latin word by a given SEED."
@@ -99,7 +98,6 @@
                           ))))
     description
     ))
-
 
 (defun latin-word-flatten-vector (vec)
   "Flatten VEC, which may contain sub-vectors."
