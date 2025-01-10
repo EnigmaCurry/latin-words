@@ -29,8 +29,6 @@
 
 ;; See LICENSE.txt
 
-(provide 'latin-words)
-
 (defvar latin-words-directory
   (expand-file-name "data" (file-name-directory (or load-file-name buffer-file-name)))
   "Directory containing the Latin dictionary files.")
@@ -112,3 +110,4 @@
                         (list item)))
                     vec)))
 
+(provide 'latin-words)

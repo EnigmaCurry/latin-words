@@ -10,6 +10,26 @@ redistributed in this package under the [[http://creativecommons.org/licenses/by
 [[https://github.com/IohannesArnold/lewis-short-json][IohannesArnold/lewis-short-json]] and the original XML files are
 available for viewing and download at http://www.perseus.tufts.edu/
 
+** Installation
+
+#+begin_src emacs-lisp
+#+end_src
+
+
+** Usage
+
+;;; Usage:
+;;
+;; ;; Get description string for Latin word "adbibo":
+;; (latin-word-get-description "adbibo")
+;;
+;; ;; Get definition object for Latin word "adbibo":
+;; (latin-word-get-definition "adbibo")
+;;
+;; ;; Get a "random" deterministic Latin word based on numeric seed:
+;; (latin-word-get-by-seed 1234567890)
+
+
 ** License
 
 This software is distributed under the MIT (Expat) license and the
