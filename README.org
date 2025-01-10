@@ -12,11 +12,9 @@ available for viewing and download at http://www.perseus.tufts.edu/
 
 ** Installation
 
-#+begin_src emacs-lisp
-#+end_src
+This package is only availble on github for now.
 
-
-If you use straight.el and use-package:
+Here is how I install it with [[https://github.com/radian-software/straight.el][straight.el]] and [[https://github.com/jwiegley/use-package][use-package]]:
 
 #+begin_src elisp
 (use-package
@@ -32,9 +30,10 @@ If you use straight.el and use-package:
 By default, the =latin-words-directory= is set to the =data= directory
 beneath the directory containing =latin-words.el=, however straight.el
 separates the elisp code from the data files, so you must customize
-=latin-words-directory= to be the path to the place where your package
-manager clones this repository to and find the =data= directory
-beneath that (e.g., =~/.emacs.d/straight/repos/latin-words/data=).
+=latin-words-directory= to be the actual path where your package
+manager (e.g. straight.el) clones this repository to, and then find
+the =data= directory beneath that (e.g.,
+=~/.emacs.d/straight/repos/latin-words/data=).
 
 ** Usage
 
